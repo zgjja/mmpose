@@ -1223,8 +1223,8 @@ class FilterAnnotations(BaseTransform):
                 ((bbox[..., 2] - bbox[..., 0] > self.min_gt_bbox_wh[0]) &
                  (bbox[..., 3] - bbox[..., 1] > self.min_gt_bbox_wh[1])))
         if self.by_area and 'area' in results:
-            area = results['area']
-            tests.append(area >= self.min_gt_area)
+            area = np.array(results['area'])
+            tests.append(area > self.min_gt_area)
         if self.by_kpt:
             kpts_vis = results['keypoints_visible']
             if kpts_vis.ndim == 3:
@@ -1243,7 +1243,7 @@ class FilterAnnotations(BaseTransform):
                 'keypoints_visible', 'area')
         for key in keys:
             if key in results:
-                results[key] = results[key][keep]
+                results[key] = np.array(results[key])[keep]
 
         return results
 

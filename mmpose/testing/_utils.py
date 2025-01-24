@@ -20,7 +20,7 @@ def get_coco_sample(
         with_bbox_cs=True,
         with_img_mask=False,
         random_keypoints_visible=False,
-        non_occlusion=False):
+        non_occlusion=False) -> dict:
     """Create a dummy data sample in COCO style."""
     rng = np.random.RandomState(0)
     h, w = img_shape
@@ -58,7 +58,9 @@ def get_coco_sample(
         'img': img,
         'img_shape': img_shape,
         'ori_shape': img_shape,
+        'category_id': [0 for _ in range(num_instances)],
         'bbox': bbox,
+        'bbox_score': np.ones(num_instances),
         'keypoints': keypoints,
         'keypoints_visible': keypoints_visible,
         'upper_body_ids': upper_body_ids,

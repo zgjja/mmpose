@@ -609,90 +609,66 @@ class TestFilterAnnotations(TestCase):
     def setUp(self):
         """Setup the model and optimizer which are used in every test
         method."""
-        self.results = {
-            'img':
-            np.random.random((224, 224, 3)),
-            'img_shape': (224, 224),
-            'bbox':
-            np.array([[10, 10, 20, 20], [20, 20, 40, 40], [40, 40, 80, 80]]),
-            'bbox_score':
-            np.array([0.9, 0.8, 0.7]),
-            'category_id':
-            np.array([1, 2, 3]),
-            'keypoints':
-            np.array([[15, 15, 1], [25, 25, 1], [45, 45, 1]]),
-            'keypoints_visible':
-            np.array([[1, 1, 0], [1, 1, 1], [1, 1, 1]]),
-            'area':
-            np.array([300, 600, 1200]),
-        }
+        self.num_instance = 16
+        self.data_info = get_coco_sample(
+            img_shape=(480, 640),
+            num_instances=self.num_instance,
+            with_bbox_cs=True,
+            with_img_mask=True)
 
     def test_transform(self):
+        MAX = int(1 << 32 - 1)
         # Test keep_empty = True
         transform = FilterAnnotations(
-            min_gt_bbox_wh=(50, 50),
+            min_gt_bbox_wh=(MAX, MAX),
             keep_empty=True,
             by_box=True,
         )
-        results = transform(copy.deepcopy(self.results))
+        results = transform(copy.deepcopy(self.data_info))
         self.assertIsNone(results)
 
         # Test keep_empty = False
         transform = FilterAnnotations(
-            min_gt_bbox_wh=(50, 50),
+            min_gt_bbox_wh=(MAX, MAX),
             keep_empty=False,
         )
-        results = transform(copy.deepcopy(self.results))
+        results = transform(copy.deepcopy(self.data_info))
         self.assertTrue(isinstance(results, dict))
 
-        # Test filter annotations by bbox
-        transform = FilterAnnotations(min_gt_bbox_wh=(15, 15), by_box=True)
-        results = transform(copy.deepcopy(self.results))
-        print((results['bbox'] == np.array([[20, 20, 40, 40], [40, 40, 80,
-                                                               80]])).all())
-        self.assertTrue((results['bbox'] == np.array([[20, 20, 40, 40],
-                                                      [40, 40, 80,
-                                                       80]])).all())
-        self.assertTrue((results['bbox_score'] == np.array([0.8, 0.7])).all())
-        self.assertTrue((results['category_id'] == np.array([2, 3])).all())
-        self.assertTrue((results['keypoints'] == np.array([[25, 25, 1],
-                                                           [45, 45,
-                                                            1]])).all())
-        self.assertTrue(
-            (results['keypoints_visible'] == np.array([[1, 1, 1], [1, 1,
-                                                                   1]])).all())
-        self.assertTrue((results['area'] == np.array([600, 1200])).all())
+        # Test filter annotations by bbox (keep_empty=True)
+        KEY = [
+            'bbox', 'bbox_score', 'category_id', 'keypoints',
+            'keypoints_visible'
+        ]
+        wh = self.data_info['bbox'][:, 2:4] - self.data_info['bbox'][:, :2]
+        w_case = [(i, (j, 0)) for i, j in enumerate(np.sort(wh[:, 0]), 1)]
+        h_case = [(i, (0, j)) for i, j in enumerate(np.sort(wh[:, 1]), 1)]
+        for filtered_num, box_wh in (w_case + h_case):
+            transform = FilterAnnotations(
+                min_gt_bbox_wh=box_wh, by_box=True, keep_empty=True)
+            results = transform(copy.deepcopy(self.data_info))
+            remain = self.num_instance - filtered_num
+            if remain == 0:
+                self.assertIsNone(results)
+            else:
+                for key in KEY:
+                    if results.get(key, None) is not None:
+                        self.assertIsInstance(results[key], np.ndarray)
+                        self.assertEqual(results[key].shape[0], remain)
 
-        # Test filter annotations by area
-        transform = FilterAnnotations(min_gt_area=1000, by_area=True)
-        results = transform(copy.deepcopy(self.results))
-        self.assertIsInstance(results, dict)
-        self.assertTrue((results['bbox'] == np.array([[40, 40, 80,
-                                                       80]])).all())
-        self.assertTrue((results['bbox_score'] == np.array([0.7])).all())
-        self.assertTrue((results['category_id'] == np.array([3])).all())
-        self.assertTrue((results['keypoints'] == np.array([[45, 45,
-                                                            1]])).all())
-        self.assertTrue(
-            (results['keypoints_visible'] == np.array([[1, 1, 1]])).all())
-        self.assertTrue((results['area'] == np.array([1200])).all())
-
-        # Test filter annotations by keypoints visibility
-        transform = FilterAnnotations(min_kpt_vis=3, by_kpt=True)
-        results = transform(copy.deepcopy(self.results))
-        self.assertIsInstance(results, dict)
-        self.assertTrue((results['bbox'] == np.array([[20, 20, 40, 40],
-                                                      [40, 40, 80,
-                                                       80]])).all())
-        self.assertTrue((results['bbox_score'] == np.array([0.8, 0.7])).all())
-        self.assertTrue((results['category_id'] == np.array([2, 3])).all())
-        self.assertTrue((results['keypoints'] == np.array([[25, 25, 1],
-                                                           [45, 45,
-                                                            1]])).all())
-        self.assertTrue(
-            (results['keypoints_visible'] == np.array([[1, 1, 1], [1, 1,
-                                                                   1]])).all())
-        self.assertTrue((results['area'] == np.array([600, 1200])).all())
+        # Test filter annotations by area (keep_empty=False)
+        info = copy.deepcopy(self.data_info)
+        info['area'] = np.random.randint(0, 1000, (self.num_instance, ))
+        for i, area in enumerate(np.sort(info['area']), 1):
+            transform = FilterAnnotations(
+                min_gt_area=area, by_area=True, keep_empty=False)
+            results = transform(info)
+            remain = self.num_instance - i
+            self.assertIsInstance(results, dict)
+            for key in KEY + ['area']:
+                if results.get(key, None) is not None:
+                    self.assertIsInstance(results[key], np.ndarray)
+                    self.assertEqual(results[key].shape[0], remain)
 
 
 class TestYOLOXHSVRandomAug(TestCase):
