@@ -159,7 +159,7 @@ class WindowMSA(BaseModule):
 
 
 class LocalWindowSelfAttention(BaseModule):
-    r""" Local-window Self Attention (LSA) module with relative position bias.
+    r"""Local-window Self Attention (LSA) module with relative position bias.
 
     This module is the short-range self-attention module in the
     Interlaced Sparse Self-Attention <https://arxiv.org/abs/1907.12273>`_.

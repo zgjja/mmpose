@@ -699,8 +699,8 @@ class CIDHead(BaseHead):
     def _load_state_dict_pre_hook(self, state_dict, prefix, local_meta, *args,
                                   **kwargs):
         """A hook function to convert old-version state dict of
-        :class:`CIDHead` (before MMPose v1.0.0) to a compatible format
-        of :class:`CIDHead`.
+        :class:`CIDHead` (before MMPose v1.0.0) to a compatible format of
+        :class:`CIDHead`.
 
         The hook will be automatically registered during initialization.
         """

@@ -149,7 +149,7 @@ class TransformerPoseDataset(TransformerBaseDataset):
         return gt_db
 
     def _load_coco_keypoint_annotation_kernel(self, img_id):
-        """load annotation from COCOAPI.
+        """Load annotation from COCOAPI.
 
         Note:
             bbox:[x1, y1, w, h]

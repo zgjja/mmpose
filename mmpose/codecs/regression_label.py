@@ -27,7 +27,6 @@ class RegressionLabel(BaseKeypointCodec):
 
     Args:
         input_size (tuple): Input image size in [w, h]
-
     """
 
     label_mapping_table = dict(

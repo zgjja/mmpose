@@ -98,11 +98,8 @@ class ProposalGenerator(nn.Module):
         local_max_mask = F.max_pool2d(
             input=max_mask, kernel_size=3, stride=1,
             padding=1).reshape(bs, nq, w * h, 1)  # (bs, nq, w*h, 1)
-        '''
-        proposal = (similarity_coord_grid * local_max_mask).sum(
-            dim=2, keepdim=False) / torch.count_nonzero(
-                local_max_mask, dim=2)
-        '''
+        """Proposal = (similarity_coord_grid * local_max_mask).sum( dim=2,
+        keepdim=False) / torch.count_nonzero( local_max_mask, dim=2)"""
         # first, extract the local probability map with the mask
         local_similarity_softmax = similarity_softmax[:, :, :,
                                                       None] * local_max_mask

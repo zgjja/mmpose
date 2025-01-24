@@ -88,7 +88,7 @@ def window_reverse(windows, window_size, H, W):
 
 
 class WindowAttention(nn.Module):
-    r""" Window based multi-head self attention (W-MSA) module with relative
+    r"""Window based multi-head self attention (W-MSA) module with relative
     position bias. It supports both of shifted and non-shifted window.
 
     Args: dim (int): Number of input channels. window_size (tuple[int]): The
@@ -204,7 +204,7 @@ class WindowAttention(nn.Module):
 
 
 class SwinTransformerBlock(nn.Module):
-    r""" Swin Transformer Block.
+    r"""Swin Transformer Block.
 
     Args: dim (int): Number of input channels. input_resolution (tuple[int]):
     Input resolution. num_heads (int): Number of attention heads. window_size
@@ -393,7 +393,7 @@ class SwinTransformerBlock(nn.Module):
 
 
 class PatchMerging(nn.Module):
-    r""" Patch Merging Layer.
+    r"""Patch Merging Layer.
 
     Args: input_resolution (tuple[int]): Resolution of input feature. dim (
     int): Number of input channels. norm_layer (nn.Module, optional):
@@ -535,7 +535,7 @@ class BasicLayer(nn.Module):
 
 
 class PatchEmbed(nn.Module):
-    r""" Image to Patch Embedding
+    r"""Image to Patch Embedding.
 
     Args: img_size (int): Image size.  Default: 224. patch_size (int): Patch
     token size. Default: 4. in_chans (int): Number of input image channels.

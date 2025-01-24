@@ -146,7 +146,7 @@ class TestCocoWholeBodyMetric(TestCase):
         self.tmp_dir.cleanup()
 
     def test_init(self):
-        """test metric init method."""
+        """Test metric init method."""
         # test score_mode option
         with self.assertRaisesRegex(ValueError,
                                     '`score_mode` should be one of'):
@@ -168,7 +168,7 @@ class TestCocoWholeBodyMetric(TestCase):
                 outfile_prefix=None)
 
     def test_other_methods(self):
-        """test other useful methods."""
+        """Test other useful methods."""
         # test `_sort_and_unique_bboxes` method
         metric_coco = CocoWholeBodyMetric(
             ann_file=self.ann_file_coco, score_mode='bbox', nms_mode='none')
@@ -185,7 +185,7 @@ class TestCocoWholeBodyMetric(TestCase):
         self.assertDictEqual(eval_results, self.target_coco)
 
     def test_format_only(self):
-        """test `format_only` option."""
+        """Test `format_only` option."""
         metric_coco = CocoWholeBodyMetric(
             ann_file=self.ann_file_coco,
             format_only=True,
@@ -212,7 +212,7 @@ class TestCocoWholeBodyMetric(TestCase):
             _ = CocoWholeBodyMetric(ann_file=tmp_ann_file, format_only=False)
 
     def test_bottomup_evaluate(self):
-        """test bottomup-style COCO metric evaluation."""
+        """Test bottomup-style COCO metric evaluation."""
         # case1: score_mode='bbox', nms_mode='none'
         metric_coco = CocoWholeBodyMetric(
             ann_file=self.ann_file_coco,
@@ -231,7 +231,7 @@ class TestCocoWholeBodyMetric(TestCase):
             osp.isfile(osp.join(self.tmp_dir.name, 'test.keypoints.json')))
 
     def test_topdown_evaluate(self):
-        """test topdown-style COCO metric evaluation."""
+        """Test topdown-style COCO metric evaluation."""
         # case 1: score_mode='bbox', nms_mode='none'
         metric_coco = CocoWholeBodyMetric(
             ann_file=self.ann_file_coco,

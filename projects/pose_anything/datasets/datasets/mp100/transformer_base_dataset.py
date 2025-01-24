@@ -135,7 +135,7 @@ class TransformerBaseDataset(Dataset, metaclass=ABCMeta):
         return info_str
 
     def _merge_obj(self, Xs_list, Xq, idx):
-        """merge Xs_list and Xq.
+        """Merge Xs_list and Xq.
 
         :param Xs_list: N-shot samples X
         :param Xq: query X
@@ -199,7 +199,7 @@ class TransformerBaseDataset(Dataset, metaclass=ABCMeta):
         return Xall
 
     def _sort_and_unique_bboxes(self, kpts, key='bbox_id'):
-        """sort kpts and remove the repeated ones."""
+        """Sort kpts and remove the repeated ones."""
         kpts = sorted(kpts, key=lambda x: x[key])
         num = len(kpts)
         for i in range(num - 1, 0, -1):

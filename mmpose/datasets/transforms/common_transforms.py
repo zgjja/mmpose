@@ -82,7 +82,7 @@ class GetBBoxCenterScale(BaseTransform):
         return results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.
@@ -249,7 +249,7 @@ class RandomFlip(BaseTransform):
         return results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.
@@ -417,7 +417,7 @@ class RandomHalfBody(BaseTransform):
         return results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.
@@ -551,7 +551,7 @@ class RandomBBoxTransform(BaseTransform):
         return results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.
@@ -699,7 +699,7 @@ class Albumentation(BaseTransform):
         return results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.
@@ -862,7 +862,7 @@ class PhotometricDistortion(BaseTransform):
         return results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.
@@ -1071,7 +1071,7 @@ class GenerateTarget(BaseTransform):
         return results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.

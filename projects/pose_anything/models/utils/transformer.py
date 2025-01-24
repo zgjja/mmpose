@@ -209,6 +209,7 @@ class DetrTransformerDecoder(TransformerLayerSequence):
 
     def forward(self, query, *args, **kwargs):
         """Forward function for `TransformerDecoder`.
+
         Args:
             query (Tensor): Input query with shape
                 `(num_query, bs, embed_dims)`.

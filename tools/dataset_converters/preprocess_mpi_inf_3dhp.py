@@ -98,6 +98,7 @@ def get_annotations(joints_2d, joints_3d, scale_factor=1.2):
 
 def load_trainset(data_root, out_dir):
     """Load training data, create annotation file and camera file.
+
     Args:
         data_root: Directory of dataset, which is organized in the following
             hierarchy:

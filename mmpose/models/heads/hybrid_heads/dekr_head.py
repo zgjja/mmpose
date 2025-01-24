@@ -548,8 +548,8 @@ class DEKRHead(BaseHead):
     def _load_state_dict_pre_hook(self, state_dict, prefix, local_meta, *args,
                                   **kwargs):
         """A hook function to convert old-version state dict of
-        :class:`DEKRHead` (before MMPose v1.0.0) to a compatible format
-        of :class:`DEKRHead`.
+        :class:`DEKRHead` (before MMPose v1.0.0) to a compatible format of
+        :class:`DEKRHead`.
 
         The hook will be automatically registered during initialization.
         """

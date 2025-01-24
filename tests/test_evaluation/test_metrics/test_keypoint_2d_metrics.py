@@ -46,14 +46,14 @@ class TestPCKAccuracy(TestCase):
             self.data_samples.append(data_sample)
 
     def test_init(self):
-        """test metric init method."""
+        """Test metric init method."""
         # test invalid normalized_items
         with self.assertRaisesRegex(
                 KeyError, "Should be one of 'bbox', 'head', 'torso'"):
             PCKAccuracy(norm_item='invalid')
 
     def test_evaluate(self):
-        """test PCK accuracy evaluation metric."""
+        """Test PCK accuracy evaluation metric."""
         # test normalized by 'bbox'
         pck_metric = PCKAccuracy(thr=0.5, norm_item='bbox')
         pck_metric.process(self.data_batch, self.data_samples)
@@ -117,14 +117,14 @@ class TestMpiiPCKAccuracy(TestCase):
             self.data_samples.append(data_sample)
 
     def test_init(self):
-        """test metric init method."""
+        """Test metric init method."""
         # test invalid normalized_items
         with self.assertRaisesRegex(
                 KeyError, "Should be one of 'bbox', 'head', 'torso'"):
             MpiiPCKAccuracy(norm_item='invalid')
 
     def test_evaluate(self):
-        """test PCK accuracy evaluation metric."""
+        """Test PCK accuracy evaluation metric."""
         # test normalized by 'head_size'
         mpii_pck_metric = MpiiPCKAccuracy(thr=0.3, norm_item='head')
         mpii_pck_metric.process(self.data_batch, self.data_samples)
@@ -180,14 +180,14 @@ class TestJhmdbPCKAccuracy(TestCase):
             self.data_samples.append(data_sample)
 
     def test_init(self):
-        """test metric init method."""
+        """Test metric init method."""
         # test invalid normalized_items
         with self.assertRaisesRegex(
                 KeyError, "Should be one of 'bbox', 'head', 'torso'"):
             JhmdbPCKAccuracy(norm_item='invalid')
 
     def test_evaluate(self):
-        """test PCK accuracy evaluation metric."""
+        """Test PCK accuracy evaluation metric."""
         # test normalized by 'bbox_size'
         jhmdb_pck_metric = JhmdbPCKAccuracy(thr=0.5, norm_item='bbox')
         jhmdb_pck_metric.process(self.data_batch, self.data_samples)
@@ -265,7 +265,7 @@ class TestAUCandEPE(TestCase):
         self.data_samples = [data_sample]
 
     def test_auc_evaluate(self):
-        """test AUC evaluation metric."""
+        """Test AUC evaluation metric."""
         auc_metric = AUC(norm_factor=20, num_thrs=4)
         auc_metric.process(self.data_batch, self.data_samples)
         auc = auc_metric.evaluate(1)
@@ -273,7 +273,7 @@ class TestAUCandEPE(TestCase):
         self.assertDictEqual(auc, target)
 
     def test_epe_evaluate(self):
-        """test EPE evaluation metric."""
+        """Test EPE evaluation metric."""
         epe_metric = EPE()
         epe_metric.process(self.data_batch, self.data_samples)
         epe = epe_metric.evaluate(1)
@@ -315,7 +315,7 @@ class TestNME(TestCase):
         return data_batch, data_samples
 
     def test_nme_evaluate(self):
-        """test NME evaluation metric."""
+        """Test NME evaluation metric."""
         # test when norm_mode = 'use_norm_item'
         # test norm_item = 'box_size' like in `AFLWDataset`
         norm_item = 'box_size'
@@ -366,7 +366,7 @@ class TestNME(TestCase):
         self.assertDictEqual(nme, target)
 
     def test_exceptions_and_warnings(self):
-        """test exceptions and warnings."""
+        """Test exceptions and warnings."""
         # test invalid norm_mode
         with self.assertRaisesRegex(
                 KeyError,

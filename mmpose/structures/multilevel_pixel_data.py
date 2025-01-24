@@ -174,7 +174,7 @@ class MultilevelPixelData(BaseDataElement):
         object.__setattr__(self, name, value)
 
     def __delattr__(self, item: str):
-        """delete the item in dataelement.
+        """Delete the item in dataelement.
 
         Args:
             item (str): The key to delete.
@@ -200,7 +200,7 @@ class MultilevelPixelData(BaseDataElement):
         return [getattr(level, name) for level in self.levels()]
 
     def pop(self, *args) -> Any:
-        """pop property in data and metainfo as the same as python."""
+        """Pop property in data and metainfo as the same as python."""
         assert len(args) < 3, '``pop`` get more than 2 arguments'
         name = args[0]
         if name in self._metainfo_fields:

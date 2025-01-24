@@ -245,7 +245,7 @@ class PackPoseInputs(BaseTransform):
         return packed_results
 
     def __repr__(self) -> str:
-        """print the basic information of the transform.
+        """Print the basic information of the transform.
 
         Returns:
             str: Formatted string.

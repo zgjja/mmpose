@@ -93,12 +93,12 @@ class BasicBlock(BaseModule):
 
     @property
     def norm1(self):
-        """nn.Module: the normalization layer named "norm1" """
+        """nn.Module: the normalization layer named "norm1"."""
         return getattr(self, self.norm1_name)
 
     @property
     def norm2(self):
-        """nn.Module: the normalization layer named "norm2" """
+        """nn.Module: the normalization layer named "norm2"."""
         return getattr(self, self.norm2_name)
 
     def forward(self, x):
@@ -231,17 +231,17 @@ class Bottleneck(BaseModule):
 
     @property
     def norm1(self):
-        """nn.Module: the normalization layer named "norm1" """
+        """nn.Module: the normalization layer named "norm1"."""
         return getattr(self, self.norm1_name)
 
     @property
     def norm2(self):
-        """nn.Module: the normalization layer named "norm2" """
+        """nn.Module: the normalization layer named "norm2"."""
         return getattr(self, self.norm2_name)
 
     @property
     def norm3(self):
-        """nn.Module: the normalization layer named "norm3" """
+        """nn.Module: the normalization layer named "norm3"."""
         return getattr(self, self.norm3_name)
 
     def forward(self, x):
@@ -589,7 +589,7 @@ class ResNet(BaseBackbone):
 
     @property
     def norm1(self):
-        """nn.Module: the normalization layer named "norm1" """
+        """nn.Module: the normalization layer named "norm1"."""
         return getattr(self, self.norm1_name)
 
     def _make_stem_layer(self, in_channels, stem_channels):

@@ -1,10 +1,9 @@
 #############################################################################
 """# You have to fill these args.
 
-_base_(str): The path to your pruning config file.
-pruned_path (str): The path to the checkpoint of the pruned model.
-finetune_lr (float): The lr rate to finetune. Usually, we directly use the lr
-    rate of the pretrain.
+_base_(str): The path to your pruning config file. pruned_path (str): The path
+to the checkpoint of the pruned model. finetune_lr (float): The lr rate to
+finetune. Usually, we directly use the lr     rate of the pretrain.
 """
 
 _base_ = './group_fisher_prune_rtmpose-s_8xb256-420e_aic-coco-256x192.py'  # noqa

@@ -114,7 +114,7 @@ class TestPoseTrack18Metric(TestCase):
         self.tmp_dir.cleanup()
 
     def test_init(self):
-        """test metric init method."""
+        """Test metric init method."""
         # test score_mode option
         with self.assertRaisesRegex(ValueError,
                                     '`score_mode` should be one of'):
@@ -132,7 +132,7 @@ class TestPoseTrack18Metric(TestCase):
                 ann_file=self.ann_file, format_only=True, outfile_prefix=None)
 
     def test_topdown_evaluate(self):
-        """test topdown-style posetrack18 metric evaluation."""
+        """Test topdown-style posetrack18 metric evaluation."""
         # case 1: score_mode='bbox', nms_mode='none'
         posetrack18_metric = PoseTrack18Metric(
             ann_file=self.ann_file,
@@ -188,7 +188,7 @@ class TestPoseTrack18Metric(TestCase):
             osp.isfile(osp.join(self.tmp_dir.name, '012834_mpii_test.json')))
 
     def test_bottomup_evaluate(self):
-        """test bottomup-style posetrack18 metric evaluation."""
+        """Test bottomup-style posetrack18 metric evaluation."""
         # case 1: score_mode='bbox', nms_mode='none'
         posetrack18_metric = PoseTrack18Metric(
             ann_file=self.ann_file, outfile_prefix=f'{self.tmp_dir.name}/test')
@@ -205,7 +205,7 @@ class TestPoseTrack18Metric(TestCase):
             osp.isfile(osp.join(self.tmp_dir.name, '009473_mpii_test.json')))
 
     def test_other_methods(self):
-        """test other useful methods."""
+        """Test other useful methods."""
         # test `_sort_and_unique_bboxes` method
         posetrack18_metric = PoseTrack18Metric(ann_file=self.ann_file)
         posetrack18_metric.dataset_meta = self.posetrack18_dataset_meta
@@ -221,7 +221,7 @@ class TestPoseTrack18Metric(TestCase):
         self.assertDictEqual(eval_results, self.target)
 
     def test_format_only(self):
-        """test `format_only` option."""
+        """Test `format_only` option."""
         posetrack18_metric = PoseTrack18Metric(
             ann_file=self.ann_file,
             format_only=True,

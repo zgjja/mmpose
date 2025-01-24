@@ -1148,7 +1148,7 @@ class EDPoseHead(TransformerHead):
         return init_cfg
 
     def prepare_for_denosing(self, targets: OptSampleList, device):
-        """prepare for dn components in forward function."""
+        """Prepare for dn components in forward function."""
         if not self.training:
             bs = len(targets)
             attn_mask_infere = torch.zeros(

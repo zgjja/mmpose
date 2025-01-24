@@ -1,10 +1,9 @@
 #############################################################################
 """You have to fill these args.
 
-_base_(str): The path to your pretrain config file.
-fix_subnet (Union[dict,str]): The dict store the pruning structure or the
-    json file including it.
-divisor (int): The divisor the make the channel number divisible.
+_base_(str): The path to your pretrain config file. fix_subnet
+(Union[dict,str]): The dict store the pruning structure or the     json file
+including it. divisor (int): The divisor the make the channel number divisible.
 """
 
 _base_ = 'mmpose::body_2d_keypoint/rtmpose/coco/rtmpose-s_8xb256-420e_coco-256x192.py'  # noqa

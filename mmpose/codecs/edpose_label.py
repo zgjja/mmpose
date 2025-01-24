@@ -10,8 +10,8 @@ from .base import BaseKeypointCodec
 
 @KEYPOINT_CODECS.register_module()
 class EDPoseLabel(BaseKeypointCodec):
-    r"""Generate keypoint and label coordinates for `ED-Pose`_ by
-    Yang J. et al (2023).
+    r"""Generate keypoint and label coordinates for `ED-Pose`_ by Yang J. et al
+    (2023).
 
     Note:
 

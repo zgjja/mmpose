@@ -73,7 +73,7 @@ def window_reverse(windows, window_size, H, W):
 
 
 class SwinMLPBlock(nn.Module):
-    r""" Swin MLP Block.
+    r"""Swin MLP Block.
 
     Args: dim (int): Number of input channels. input_resolution (tuple[int]):
     Input resolution. num_heads (int): Number of attention heads. window_size
@@ -222,7 +222,7 @@ class SwinMLPBlock(nn.Module):
 
 
 class PatchMerging(nn.Module):
-    r""" Patch Merging Layer.
+    r"""Patch Merging Layer.
 
     Args:
         input_resolution (tuple[int]): Resolution of input feature.
@@ -357,7 +357,7 @@ class BasicLayer(nn.Module):
 
 
 class PatchEmbed(nn.Module):
-    r""" Image to Patch Embedding
+    r"""Image to Patch Embedding.
 
     Args:
         img_size (int): Image size.  Default: 224.
@@ -416,7 +416,7 @@ class PatchEmbed(nn.Module):
 
 
 class SwinMLP(nn.Module):
-    r""" Swin MLP
+    r"""Swin MLP.
 
     Args:
         img_size (int | tuple(int)): Input image size. Default 224

@@ -26,7 +26,7 @@ class RTMDet(nn.Module):
         self.input_shape = 640
 
     def forward(self, inputs):
-        """model forward function."""
+        """Model forward function."""
         boxes = []
         neck_outputs = self.model(inputs)
         for i, (cls, box) in enumerate(zip(*neck_outputs)):

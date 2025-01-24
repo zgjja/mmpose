@@ -154,13 +154,13 @@ class TestInterHandMetric(TestCase):
         self.tmp_dir.cleanup()
 
     def test_init(self):
-        """test metric init method."""
+        """Test metric init method."""
         # test modes option
         with self.assertRaisesRegex(ValueError, '`mode` should be'):
             _ = InterHandMetric(modes=['invalid'])
 
     def test_topdown_evaluate(self):
-        """test topdown-style COCO metric evaluation."""
+        """Test topdown-style COCO metric evaluation."""
         # case 1: modes='MPJPE'
         metric = InterHandMetric(modes=['MPJPE'])
         metric.dataset_meta = self.dataset_meta

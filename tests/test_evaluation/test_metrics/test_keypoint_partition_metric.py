@@ -46,14 +46,13 @@ class TestKeypointPartitionMetricWrappingCocoMetric(TestCase):
         self.bottomup_data_coco = self._convert_ann_to_bottomup_batch_data(
             self.ann_file_coco)
         assert len(self.bottomup_data_coco) == 4
-        """
-        The target results were obtained from CocoWholebodyMetric with
-        score_mode='bbox' and nms_mode='none'. We cannot compare other
-        combinations of score_mode and nms_mode because CocoWholebodyMetric
-        calculates scores and nms using all keypoints while
-        KeypointPartitionMetric calculates scores and nms part by part.
-        As long as this case is tested correct, the other cases should be
-        correct.
+        """The target results were obtained from CocoWholebodyMetric with
+        score_mode='bbox' and nms_mode='none'.
+
+        We cannot compare other combinations of score_mode and nms_mode because
+        CocoWholebodyMetric calculates scores and nms using all keypoints while
+        KeypointPartitionMetric calculates scores and nms part by part. As long
+        as this case is tested correct, the other cases should be correct.
         """
         self.target_bbox_none = {
             'body/coco/AP': 0.749,
@@ -183,7 +182,7 @@ class TestKeypointPartitionMetricWrappingCocoMetric(TestCase):
         self.tmp_dir.cleanup()
 
     def test_init(self):
-        """test metric init method."""
+        """Test metric init method."""
         # test wrong metric type
         with self.assertRaisesRegex(
                 ValueError, 'Metrics supported by KeypointPartitionMetric'):
@@ -223,7 +222,7 @@ class TestKeypointPartitionMetricWrappingCocoMetric(TestCase):
                 metric=dict(type='CocoMetric'), partitions=dict(all=[]))
 
     def test_bottomup_evaluate(self):
-        """test bottomup-style COCO metric evaluation."""
+        """Test bottomup-style COCO metric evaluation."""
         # case1: score_mode='bbox', nms_mode='none'
         metric = KeypointPartitionMetric(
             metric=dict(
@@ -251,7 +250,7 @@ class TestKeypointPartitionMetricWrappingCocoMetric(TestCase):
         self._assert_outfiles('test_bottomup')
 
     def test_topdown_evaluate(self):
-        """test topdown-style COCO metric evaluation."""
+        """Test topdown-style COCO metric evaluation."""
         # case 1: score_mode='bbox', nms_mode='none'
         metric = KeypointPartitionMetric(
             metric=dict(
@@ -330,7 +329,7 @@ class TestKeypointPartitionMetricWrappingPCKAccuracy(TestCase):
                 partitions=dict(all=range(133)))
 
     def test_evaluate(self):
-        """test PCK accuracy evaluation metric."""
+        """Test PCK accuracy evaluation metric."""
         # test normalized by 'bbox'
         pck_metric = KeypointPartitionMetric(
             metric=dict(type='PCKAccuracy', thr=0.5, norm_item='bbox'),
@@ -424,7 +423,7 @@ class TestKeypointPartitionMetricWrappingAUCandEPE(TestCase):
         self.data_samples = [data_sample]
 
     def test_auc_evaluate(self):
-        """test AUC evaluation metric."""
+        """Test AUC evaluation metric."""
         auc_metric = KeypointPartitionMetric(
             metric=dict(type='AUC', norm_factor=20, num_thrs=4),
             partitions=dict(
@@ -438,7 +437,7 @@ class TestKeypointPartitionMetricWrappingAUCandEPE(TestCase):
         self.assertDictEqual(auc, target)
 
     def test_epe_evaluate(self):
-        """test EPE evaluation metric."""
+        """Test EPE evaluation metric."""
         epe_metric = KeypointPartitionMetric(
             metric=dict(type='EPE', ),
             partitions=dict(
@@ -511,7 +510,7 @@ class TestKeypointPartitionMetricWrappingNME(TestCase):
                 partitions=dict(all=range(133)))
 
     def test_nme_evaluate(self):
-        """test NME evaluation metric."""
+        """Test NME evaluation metric."""
         # test when norm_mode = 'use_norm_item'
         # test norm_item = 'box_size' like in `AFLWDataset`
         nme_metric = KeypointPartitionMetric(

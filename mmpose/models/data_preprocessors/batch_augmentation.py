@@ -41,7 +41,7 @@ class BatchSyncRandomResize(nn.Module):
 
     def forward(self, inputs: Tensor, data_samples: List[PoseDataSample]
                 ) -> Tuple[Tensor, List[PoseDataSample]]:
-        """resize a batch of images and bboxes to shape ``self._input_size``"""
+        """Resize a batch of images and bboxes to shape ``self._input_size``"""
         h, w = inputs.shape[-2:]
         if self._input_size is None:
             self._input_size = (h, w)

@@ -1,17 +1,17 @@
 #############################################################################
 """You have to fill these args.
 
-_base_ (str): The path to your pretrained model checkpoint.
-pretrained_path (str): The path to your pretrained model checkpoint.
+_base_ (str): The path to your pretrained model checkpoint. pretrained_path
+(str): The path to your pretrained model checkpoint.
 
 interval (int): Interval between pruning two channels. You should ensure you
-    can reach your target pruning ratio when the training ends.
-normalization_type (str): GroupFisher uses two methods to normlized the channel
-    importance, including ['flops','act']. The former uses flops, while the
-    latter uses the memory occupation of activation feature maps.
-lr_ratio (float): Ratio to decrease lr rate. As pruning progress is unstable,
-    you need to decrease the original lr rate until the pruning training work
-    steadly without getting nan.
+can reach your target pruning ratio when the training ends. normalization_type
+(str): GroupFisher uses two methods to normlized the channel     importance,
+including ['flops','act']. The former uses flops, while the     latter uses the
+memory occupation of activation feature maps. lr_ratio (float): Ratio to
+decrease lr rate. As pruning progress is unstable,     you need to decrease the
+original lr rate until the pruning training work     steadly without getting
+nan.
 
 target_flop_ratio (float): The target flop ratio to prune your model.
 input_shape (Tuple): input shape to measure the flops.

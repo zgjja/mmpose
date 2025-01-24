@@ -13,14 +13,14 @@ from ..functional import (keypoint_auc, keypoint_epe, keypoint_nme,
 
 @METRICS.register_module()
 class PCKAccuracy(BaseMetric):
-    """PCK accuracy evaluation metric.
-    Calculate the pose accuracy of Percentage of Correct Keypoints (PCK) for
-    each individual keypoint and the averaged accuracy across all keypoints.
-    PCK metric measures accuracy of the localization of the body joints.
-    The distances between predicted positions and the ground-truth ones
-    are typically normalized by the person bounding box size.
-    The threshold (thr) of the normalized distance is commonly set
-    as 0.05, 0.1 or 0.2 etc.
+    """PCK accuracy evaluation metric. Calculate the pose accuracy of
+    Percentage of Correct Keypoints (PCK) for each individual keypoint and the
+    averaged accuracy across all keypoints. PCK metric measures accuracy of the
+    localization of the body joints. The distances between predicted positions
+    and the ground-truth ones are typically normalized by the person bounding
+    box size. The threshold (thr) of the normalized distance is commonly set as
+    0.05, 0.1 or 0.2 etc.
+
     Note:
         - length of dataset: N
         - num_keypoints: K
@@ -64,7 +64,6 @@ class PCKAccuracy(BaseMetric):
         >>> pck_metric.evaluate(1)
         10/26 15:37:57 - mmengine - INFO - Evaluating PCKAccuracy (normalized by ``"bbox_size"``)...  # noqa
         {'PCK': 1.0}
-
     """
 
     def __init__(self,
